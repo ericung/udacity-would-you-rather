@@ -1,6 +1,5 @@
 import { getInitialData } from '../utils/api'
 import { receiveUsers } from '../actions/users'
-import { setAuthedUser } from '../actions/authedUser'
 
 export function handleInitialData() {
   return (dispatch) => {
