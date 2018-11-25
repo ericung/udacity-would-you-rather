@@ -34,8 +34,8 @@ class Login extends Component {
         height: '50%',
         margin: 'auto',
       };
-    return(
-      <div style={divStyle}>
+    return (
+      <div className="default">
         <h1>Login</h1>
         <p>
           <select id="selectedUser" value={this.state.selectedUser} onChange={event => this.selectUser(event)}>

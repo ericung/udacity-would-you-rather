@@ -12,13 +12,8 @@ class Dashboard extends Component {
       return <Redirect to='/login'/>
     };
 
-    const divStyle = {
-      width: '50%',
-      height: '50%',
-      margin: 'auto',
-    };
     return (
-      <div style={divStyle}>
+      <div className="default">
         <h1>Dashboard</h1>
         {questionsID.map((id) => (
           <Question id={id} key={id}/>

@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+.default {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+}
+
 .nav ul {
   display: flex;
   flex-direction: row;
@@ -49,3 +55,9 @@ li {
 .dashboardentry p{
   padding-left: 30px;
 }
+
+.question {
+  text-decoration: none;
+  color: inherit;
+}
+
