@@ -12,7 +12,7 @@ class Login extends Component {
   loginUser = () => {
     // dispatch the authorized user, implemented so that there could be a password
     this.props.dispatch(setAuthedUser(this.state.selectedUser));
-    // load data before changing pages
+    // load data before changing pages if successful authentication
     this.props.dispatch(handleLoginData());
     this.setState(() => ({
       toDashboard: true

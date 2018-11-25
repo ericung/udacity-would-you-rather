@@ -34,4 +34,18 @@ li {
   text-decoration: none;
 }
 
+.dashboardentry {
+  border: 1px solid black;
+}
 
+.dashboardentry h4{
+  padding-left: 30px;
+}
+
+.dashboardentry h5{
+  padding-left: 30px;
+}
+
+.dashboardentry p{
+  padding-left: 30px;
+}
