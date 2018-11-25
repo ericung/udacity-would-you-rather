@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom';
+import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
   state = {
-    selectedUser: ""
+    selectedUser: "",
+    toDashboard: false
   }
   loginUser = () => {
-      this.props.dispatch(setAuthedUser(this.state.selectedUser));
+    this.props.dispatch(setAuthedUser(this.state.selectedUser));
+    this.setState(() => ({
+      toDashboard: true
+    }));
     }
   selectUser = (event) => {
     var id = event.target.value;
@@ -16,6 +21,9 @@ class Login extends Component {
     }));
   }
   render() {
+    if (this.state.toDashboard === true) {
+      return <Redirect to='/' />
+    }
     const { users, usersID } = this.props;
     const divStyle = {
         width: '50%',
