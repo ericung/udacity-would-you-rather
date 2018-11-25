@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
+  state = {
+    selectedUser: ""
+  }
+  loginUser = () => {
+      this.props.dispatch(setAuthedUser(this.state.selectedUser));
+    }
+  selectUser = (event) => {
+    var id = event.target.value;
+    this.setState(() => ({
+      selectedUser: id
+    }));
+  }
   render() {
     const { users, usersID } = this.props;
     const divStyle = {
@@ -11,25 +24,21 @@ class Login extends Component {
       };
     return(
       <div style={divStyle}>
-        <h>Login</h>
+        <h1>Login</h1>
         <p>
-        <select>
-          <option value="" disabled selected>Select your option</option>
+          <select id="selectedUser" value={this.state.selectedUser} onChange={event => this.selectUser(event)}>
+            <option value="" disabled defaultValue>Select your option</option>
             {usersID.map((user) => (
-              <option key={users[user].name}>
+              <option value={user} key={users[user].name}>
                 {users[user].name}
               </option>  
             ))}
           </select>
         </p>
         <p>
-          <input id="password" placeholder="Enter Password" />
-        </p>
-        <p>
-          <button type="submit">Submit</button>
+          <button type="submit" onClick={this.loginUser}>Submit</button>
         </p>
       </div>
-
     )
   }
 }
