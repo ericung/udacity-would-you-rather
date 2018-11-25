@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
   render() {
@@ -15,4 +16,15 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+function mapStateToProps({ users, questions }) {
+  const usersID = Object.keys(users);
+  const questionsID = Object.keys(questions);
+  return {
+    users,
+    usersID,
+    questions,
+    questionsID,
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)

@@ -9,14 +9,18 @@ export function getInitialData() {
   return Promise.all([
     _getUsers(),
     _getQuestions()
-    ]).then(([users,tweets]) => ({
+    ]).then(([users,questions]) => ({
     users,
-    tweets
+    questions
   }));
 }
 
 export function getUsers() {
-  return _getUsers();
+  return Promise.all([
+    _getUsers()
+  ]).then(([users]) => ({
+    users
+  }))
 }
 
 export function saveQuestion(info) {

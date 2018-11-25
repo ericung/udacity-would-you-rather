@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
+import { handleLoginData } from '../actions/shared';
 
 class Login extends Component {
   state = {
@@ -9,7 +10,10 @@ class Login extends Component {
     toDashboard: false
   }
   loginUser = () => {
+    // dispatch the authorized user, implemented so that there could be a password
     this.props.dispatch(setAuthedUser(this.state.selectedUser));
+    // load data before changing pages
+    this.props.dispatch(handleLoginData());
     this.setState(() => ({
       toDashboard: true
     }));
@@ -51,11 +55,12 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, questions = {} }) {
   const usersID = Object.keys(users);
   return {
     users,
-    usersID
+    usersID,
+    questions,
   }
 }
 
