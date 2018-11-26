@@ -11,7 +11,7 @@ class Question extends Component {
       <Link to={`/question/${id}`} className="question">
         <div id={id} className="dashboardentry">
           <h4>{user.name} asks</h4>
-          <hr />
+          <hr/>
           <h5>Would you rather?</h5>
           <p>{optionOne.text}</p>
           <p>{optionTwo.text}</p>
@@ -22,12 +22,12 @@ class Question extends Component {
 }
 
 
-function mapStateToProps({ users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }, { id }) {
   const question = questions[id];
   const user = users[question.author];
   return {
     user,
-    question,
+    question
   }
 }
  

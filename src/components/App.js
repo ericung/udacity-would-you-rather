@@ -25,8 +25,8 @@ class App extends Component {
               ? null
               : <div>
                 <Route path='/' exact component={Dashboard} />
-                <Route path='/new' component={NewQuestion} />
-                <Route path='/leader' component={LeaderBoard} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={LeaderBoard} />
                 <Route path='/login' component={Login} />
                 <Route path='/logout' component={Login} />
                 <Route path='/question/:id' component={QuestionPage} />

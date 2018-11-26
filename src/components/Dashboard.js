@@ -3,28 +3,56 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Question from './Question';
 
+const UNANSWERED = "UNANSWERED";
+const ANSWERED = "ANSWERED";
+
 class Dashboard extends Component {
-
+  state = {
+    viewType: UNANSWERED
+  }
+  switchViewType = (newState) => {
+    this.setState({
+      viewType: newState
+    })
+  }
   render() {
-    const { authedUser, questionsID } = this.props;
+    const { authedUser, unansweredQuestionsID, answeredQuestionsID } = this.props;
 
-    if (authedUser === null) {
+    if (authedUser === null || authedUser === undefined) {
       return <Redirect to='/login'/>
     };
 
     return (
       <div className="default">
         <h1>Dashboard</h1>
-        {questionsID.map((id) => (
-          <Question id={id} key={id}/>
-        ))}
+        <nav className='nav'>
+            <button className="btn" onClick={() => this.switchViewType(UNANSWERED)}>Unanswered</button>
+            <button className="btn" onClick={() => this.switchViewType(ANSWERED)}>Answered</button>
+        </nav>
+        {this.state.viewType === UNANSWERED ?
+            unansweredQuestionsID.map((id) => (
+            <Question id={id} key={id} answered={false}/>
+            ))
+          :
+            answeredQuestionsID.map((id) => (
+            <Question id={id} key={id} answered={true}/>
+            ))
+          
+        }
       </div>
     )
   }
 }
 
-function mapStateToProps({ authedUser, questions }) {
+function mapStateToProps({ authedUser, users, questions }) {
+  if (authedUser === null || authedUser === undefined) {
+    return {};
+  }
+
   var questionsID = Object.keys(questions);
+  var unansweredQuestionsID = [];
+  var answeredQuestionsID = [];
+  var answers = users[authedUser].answers;
 
   questionsID.sort((a, b) => {
     var aTime = questions[a].timestamp;
@@ -32,9 +60,18 @@ function mapStateToProps({ authedUser, questions }) {
     return bTime - aTime;
   })
 
+  questionsID.forEach((id) => {
+    if (answers[id] === null || answers[id] === undefined) {
+      unansweredQuestionsID.push(id);
+    } else {
+      answeredQuestionsID.push(id);
+    }
+  })
+
   return {
     authedUser,
-    questionsID
+    unansweredQuestionsID,
+    answeredQuestionsID,
   }
 }
 

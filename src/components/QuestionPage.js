@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import QuestionResult from './QuestionResult'
+import QuestionVote from './QuestionVote'
 
 class QuestionPage extends Component {
   render() {
-    const { authedUser, user, question } = this.props;
+    const { authedUser, user, question, answer } = this.props;
 
     if (authedUser === null || authedUser === undefined) {
       return <Redirect to='/login' />
-    } else {
-      console.log("let's ignore authedUser: " + authedUser);
-    };
+    } 
 
-    const { optionOne, optionTwo, id } = question || { optionOne: "", optionTwo: "", id: "" };
-    const { name } = user || { name: "" }
+    const { id } = question;
+    const { name } = user;
+
+    console.log("answer: " + answer)
 
     return (
       <div id={id} className="default">
         <h3>{name} asks</h3>
         <hr />
-        <h4>Would you rather?</h4>
-        <p>{optionOne.text || ""}</p>
-        <p>{optionTwo.text || "" }</p>
+        {(answer !== undefined) ?
+          <QuestionResult id={id} />
+          :
+          <QuestionVote id={id} />
+          }
       </div>
     )
   }
@@ -35,11 +39,15 @@ function mapStateToProps({ authedUser, users, questions}, props) {
   if (question === null || question === undefined) {
     return {};
   }
+
+  const answer = users[authedUser].answers[id];
   const user = users[question.author];
+
   return {
     authedUser,
     user,
     question,
+    answer, 
   };
 }
 

@@ -29,11 +29,6 @@ class Login extends Component {
       return <Redirect to='/' />
     }
     const { users, usersID } = this.props;
-    const divStyle = {
-        width: '50%',
-        height: '50%',
-        margin: 'auto',
-      };
     return (
       <div className="default">
         <h1>Login</h1>
