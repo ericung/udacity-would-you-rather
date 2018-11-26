@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
-import { handleLoginData } from '../actions/shared';
+import { handleGetData } from '../actions/shared';
 
 class Login extends Component {
   state = {
@@ -11,13 +11,15 @@ class Login extends Component {
   }
   loginUser = () => {
     // dispatch the authorized user, implemented so that there could be a password
-    this.props.dispatch(setAuthedUser(this.state.selectedUser));
-    // load data before changing pages if successful authentication
-    this.props.dispatch(handleLoginData());
-    this.setState(() => ({
-      toDashboard: true
-    }));
+    if (this.state.selectedUser !== "") {
+      this.props.dispatch(setAuthedUser(this.state.selectedUser));
+      // load data before changing pages if successful authentication
+      this.props.dispatch(handleGetData());
+      this.setState(() => ({
+        toDashboard: true
+      }));
     }
+  }
   selectUser = (event) => {
     var id = event.target.value;
     this.setState(() => ({

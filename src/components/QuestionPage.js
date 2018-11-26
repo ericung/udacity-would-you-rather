@@ -15,8 +15,6 @@ class QuestionPage extends Component {
     const { id } = question;
     const { name } = user;
 
-    console.log("answer: " + answer)
-
     return (
       <div id={id} className="default">
         <h3>{name} asks</h3>
