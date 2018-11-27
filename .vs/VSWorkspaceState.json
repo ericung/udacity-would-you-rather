@@ -4,8 +4,10 @@
     "\\src",
     "\\src\\actions",
     "\\src\\components",
+    "\\src\\css",
+    "\\src\\reducers",
     "\\src\\utils"
   ],
-  "SelectedNode": "\\src\\components\\Login.js",
+  "SelectedNode": "\\src\\components\\QuestionVote.js",
   "PreviewInSolutionExplorer": false
 }

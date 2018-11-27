@@ -23,8 +23,8 @@ export function getUsers() {
   }))
 }
 
-export function saveQuestion(info) {
-  return _saveQuestion(info);
+export function saveQuestion(question) {
+  return _saveQuestion(question);
 }
 
 export function saveQuestionAnswer(info) {

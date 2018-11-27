@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { handleSaveQuestionAnswer, handleGetData } from '../actions/shared'
+import { handleGetData } from '../actions/shared'
+import { handleSaveQuestionAnswer } from '../actions/questions'
 
 class QuestionVote extends Component {
   state = {
