@@ -8,6 +8,10 @@ class QuestionPage extends Component {
   render() {
     const { authedUser, user, question, answer } = this.props;
 
+    if (question === null || question === undefined) {
+      return <Redirect to='/error' />
+    }
+
     if (authedUser === null || authedUser === undefined) {
       return <Redirect to='/login' />
     } 
@@ -35,7 +39,7 @@ function mapStateToProps({ authedUser, users, questions}, props) {
   const question = questions[id];
 
   if (question === null || question === undefined) {
-    return {};
+    return { authedUser };
   }
 
   const answer = users[authedUser].answers[id];

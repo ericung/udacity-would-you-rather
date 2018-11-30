@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import QuestionPage from './QuestionPage';
+import ErrorPage from './ErrorPage';
 
 class App extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
                 <Route path='/login' component={Login} />
                 <Route path='/logout' component={Login} />
                 <Route exact path='/question/:id' component={QuestionPage} />
+                <Route path='/error' component={ErrorPage} />
               </div>}
           </div>
         </Fragment>
