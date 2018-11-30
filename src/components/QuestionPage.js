@@ -8,19 +8,20 @@ class QuestionPage extends Component {
   render() {
     const { authedUser, user, question, answer } = this.props;
 
-    if (question === null || question === undefined) {
-      return <Redirect to='/error' />
-    }
-
     if (authedUser === null || authedUser === undefined) {
       return <Redirect to='/login' />
     } 
 
+    if (question === null || question === undefined) {
+      return <Redirect to='/error' />
+    }
+
     const { id } = question;
-    const { name } = user;
+    const { name, avatarURL } = user;
 
     return (
       <div id={id} className="default">
+        <img src={avatarURL} alt="avatar" height="50" width="50"/>
         <h3>{name} asks</h3>
         <hr />
         {(answer !== undefined) ?

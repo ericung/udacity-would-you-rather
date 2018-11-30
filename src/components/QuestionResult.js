@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 
 const OPTION_ONE = "optionOne";
@@ -48,6 +49,10 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
     optionOneVotes,
     optionTwoVotes,
   };
+}
+
+QuestionResult.propTypes = {
+  id: PropTypes.string.isRequired
 }
 
 export default connect(mapStateToProps)(QuestionResult)
