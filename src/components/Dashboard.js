@@ -16,7 +16,7 @@ class Dashboard extends Component {
     })
   }
   render() {
-    const { authedUser, unansweredQuestionsID, answeredQuestionsID } = this.props;
+    const { authedUser, unansweredQuestionsID, answeredQuestionsID, name } = this.props;
 
     if (authedUser === null || authedUser === undefined) {
       return <Redirect to='/login'/>
@@ -24,7 +24,7 @@ class Dashboard extends Component {
 
     return (
       <div className="default">
-        <h1>Dashboard</h1>
+        <h1>{name}'s Dashboard</h1>
         <nav className='nav'>
             <button className="btn" onClick={() => this.switchViewType(UNANSWERED)}>Unanswered</button>
             <button className="btn" onClick={() => this.switchViewType(ANSWERED)}>Answered</button>
@@ -49,6 +49,8 @@ function mapStateToProps({ authedUser, users, questions }) {
     return {};
   }
 
+  const name = users[authedUser].name;
+
   var questionsID = Object.keys(questions);
   var unansweredQuestionsID = [];
   var answeredQuestionsID = [];
@@ -72,6 +74,7 @@ function mapStateToProps({ authedUser, users, questions }) {
     authedUser,
     unansweredQuestionsID,
     answeredQuestionsID,
+    name
   }
 }
 

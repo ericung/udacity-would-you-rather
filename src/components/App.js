@@ -16,6 +16,16 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    if (this.props.authedUser === null || this.props.authedUser === undefined) {
+      return (
+        <Router>
+          <div>
+            <Nav/>
+            <Login />
+          </div>
+        </Router>
+      )
+    }
     return (
       <Router>
         <Fragment>
@@ -40,4 +50,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App) 
+function mapStateToProps({ authedUser }) {
+    return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(App) 

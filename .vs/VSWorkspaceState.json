@@ -1,13 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\actions",
     "\\src\\components",
     "\\src\\css",
+    "\\src\\middleware",
     "\\src\\reducers",
     "\\src\\utils"
   ],
-  "SelectedNode": "\\src\\components\\LeaderBoard.js",
+  "SelectedNode": "\\src\\actions\\shared.js",
   "PreviewInSolutionExplorer": false
 }

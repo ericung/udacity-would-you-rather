@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { setAuthedUser } from '../actions/authedUser';
-import { handleGetData } from '../actions/shared';
+import { handleLogin } from '../actions/shared';
 
 class Login extends Component {
   state = {
-    selectedUser: "",
-    toDashboard: false
+    selectedUser: ""
   }
   loginUser = () => {
-    // dispatch the authorized user, implemented so that there could be a password
     if (this.state.selectedUser !== "") {
-      this.props.dispatch(setAuthedUser(this.state.selectedUser));
-      // load data before changing pages if successful authentication
-      this.props.dispatch(handleGetData());
+      this.props.dispatch(handleLogin(this.state.selectedUser));
       this.setState(() => ({
         toDashboard: true
       }));
@@ -27,10 +22,12 @@ class Login extends Component {
     }));
   }
   render() {
-    if (this.state.toDashboard === true) {
+    const { authedUser, users, usersID } = this.props;
+
+    if (authedUser !== null) {
       return <Redirect to='/' />
     }
-    const { users, usersID } = this.props;
+
     return (
       <div className="default">
         <h1>Login</h1>
@@ -52,12 +49,12 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users, questions = {} }) {
+function mapStateToProps({ authedUser, users }) {
   const usersID = Object.keys(users);
   return {
+    authedUser,
     users,
     usersID,
-    questions,
   }
 }
 

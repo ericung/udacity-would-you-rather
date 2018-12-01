@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
-import { setAuthedUser } from '../actions/authedUser'
-import { cleanQuestions } from '../actions/questions'
+import { handleLogOut } from '../actions/shared'
 
 class Nav extends Component {
   handleLogout = () => {
-    console.log('hey');
-    this.props.dispatch(setAuthedUser(null));
-    this.props.dispatch(cleanQuestions());
+    this.props.dispatch(handleLogOut());
   }
   render() {
     const { authedUser } = this.props;
