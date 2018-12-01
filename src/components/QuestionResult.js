@@ -20,12 +20,12 @@ class QuestionResult extends Component {
         <div>
           <p>{answerOptionOne ? (<b>{optionOne.text}</b>) : optionOne.text}</p>
           <p>Votes: {optionOneVotes}</p>
-          <p>Percent: {optionOnePercent}</p>
+          <p>Percent: {optionOnePercent}%</p>
         </div>
         <div>
           <p>{answerOptionTwo ? (<b>{optionTwo.text}</b>) : optionTwo.text}</p>
           <p>Votes: {optionTwoVotes}</p>
-          <p>Percent: {optionTwoPercent}</p>
+          <p>Percent: {optionTwoPercent}%</p>
         </div>
       </div>
     )
@@ -45,8 +45,8 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
   const optionOneVotes = question.optionOne.votes.length;
   const optionTwoVotes = question.optionTwo.votes.length;
   const sum = optionOneVotes + optionTwoVotes;
-  const optionOnePercent = Math.round((optionOneVotes / sum)*100) / 100;
-  const optionTwoPercent = Math.round((optionTwoVotes / sum)*100) /100;
+  const optionOnePercent = Math.round((optionOneVotes / sum)*100) ;
+  const optionTwoPercent = Math.round((optionTwoVotes / sum)*100) ;
 
   return {
     question,
