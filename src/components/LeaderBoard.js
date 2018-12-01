@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import User from './User';
 
 class LeaderBoard extends Component {
   render() {
-    const { authedUser, scores } = this.props;
-
-    if (authedUser === null || authedUser === undefined) {
-      return <Redirect to='/login'/>
-    }
+    const { scores } = this.props;
 
     return (
       <div className="default">
@@ -24,13 +19,7 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
-  if (authedUser === null || authedUser === undefined) {
-    return {
-      authedUser
-    }
-  }
-
+function mapStateToProps({ users }) {
   var usersID = Object.keys(users);
 
   var scores= [];
@@ -54,7 +43,6 @@ function mapStateToProps({ authedUser, users }) {
   })
 
   return {
-    authedUser,
     scores,
   };
 }

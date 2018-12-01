@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import Question from './Question';
 
 const UNANSWERED = "UNANSWERED";
@@ -16,11 +15,7 @@ class Dashboard extends Component {
     })
   }
   render() {
-    const { authedUser, unansweredQuestionsID, answeredQuestionsID, name } = this.props;
-
-    if (authedUser === null || authedUser === undefined) {
-      return <Redirect to='/login'/>
-    };
+    const { unansweredQuestionsID, answeredQuestionsID, name } = this.props;
 
     return (
       <div className="default">
@@ -45,10 +40,6 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-  if (authedUser === null || authedUser === undefined) {
-    return {};
-  }
-
   const name = users[authedUser].name;
 
   var questionsID = Object.keys(questions);
@@ -71,7 +62,6 @@ function mapStateToProps({ authedUser, users, questions }) {
   })
 
   return {
-    authedUser,
     unansweredQuestionsID,
     answeredQuestionsID,
     name

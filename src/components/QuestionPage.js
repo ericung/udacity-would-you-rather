@@ -6,11 +6,7 @@ import QuestionVote from './QuestionVote'
 
 class QuestionPage extends Component {
   render() {
-    const { authedUser, user, question, answer } = this.props;
-
-    if (authedUser === null || authedUser === undefined) {
-      return <Redirect to='/login' />
-    } 
+    const { user, question, answer } = this.props;
 
     if (question === null || question === undefined) {
       return <Redirect to='/error' />
@@ -47,7 +43,6 @@ function mapStateToProps({ authedUser, users, questions}, props) {
   const user = users[question.author];
 
   return {
-    authedUser,
     user,
     question,
     answer, 

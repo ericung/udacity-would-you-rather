@@ -38,12 +38,6 @@ class NewQuestion extends Component {
     }
   }
   render() {
-    const { authedUser } = this.props;
-
-    if (authedUser === null || authedUser === undefined) {
-      return <Redirect to='/login' />
-    }
-
     return (
       <div className="default">
         {this.renderRedirectToHome()}
